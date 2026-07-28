@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ahmad Hasan — Email Marketing Portfolio</title>
+<style>
+  :root {
+    --blue-900: #1e3a5f;
+    --blue-700: #2a5298;
+    --blue-500: #4a90d9;
+    --blue-100: #e8f0fe;
+    --gray-50: #f8fafc;
+    --gray-100: #f1f5f9;
+    --gray-200: #e2e8f0;
+    --gray-700: #334155;
+    --gray-900: #0f172a;
+    --white: #ffffff;
+    --accent: #f59e0b;
+    --green: #10b981;
+    --radius: 12px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: var(--gray-700);
+    background: var(--white);
+    line-height: 1.6;
+  }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,255,255,0.95); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--gray-200);
+  }
+  nav .container { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .logo { font-weight: 800; font-size: 1.25rem; color: var(--blue-900); }
+  .logo span { color: var(--blue-500); }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--gray-700); font-weight: 500; font-size: 0.9rem; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--blue-500); }
+  .btn-primary { background: var(--blue-500); color: #fff; border: none; padding: 10px 22px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: all 0.2s; text-decoration: none; display: inline-block; }
+  .btn-primary:hover { background: var(--blue-700); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(42,82,152,0.3); }
+
+  /* HERO */
+  .hero { padding: 140px 0 80px; background: linear-gradient(135deg, var(--blue-900) 0%, var(--blue-700) 100%); color: var(--white); }
+  .hero .container { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .hero-badge { display: inline-block; background: rgba(255,255,255,0.15); padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; margin-bottom: 20px; }
+  .hero h1 { font-size: 3rem; font-weight: 800; line-height: 1.15; margin-bottom: 16px; }
+  .hero h1 span { color: var(--accent); }
+  .hero p { font-size: 1.1rem; opacity: 0.9; margin-bottom: 28px; max-width: 480px; }
+  .hero-visual {
+    background: rgba(255,255,255,0.08); border-radius: var(--radius);
+    padding: 24px; position: relative; overflow: hidden;
+  }
+  .dashboard-mock {
+    background: #fff; border-radius: 8px; padding: 20px; color: var(--gray-700);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  }
+  .dash-header { font-weight: 700; font-size: 0.85rem; color: var(--gray-900); margin-bottom: 12px; }
+  .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px; }
+  .stat-card { background: var(--gray-50); border-radius: 6px; padding: 12px; text-align: center; }
+  .stat-val { font-weight: 800; font-size: 1.4rem; color: var(--blue-500); }
+  .stat-lbl { font-size: 0.7rem; color: var(--gray-700); text-transform: uppercase; letter-spacing: 0.5px; }
+  .chart-bar { display: flex; gap: 6px; align-items: flex-end; height: 60px; }
+  .bar { flex: 1; background: var(--blue-500); border-radius: 3px 3px 0 0; opacity: 0.8; }
+  .bar:nth-child(1) { height: 60%; } .bar:nth-child(2) { height: 80%; } .bar:nth-child(3) { height: 55%; }
+  .bar:nth-child(4) { height: 90%; } .bar:nth-child(5) { height: 70%; } .bar:nth-child(6) { height: 85%; }
+
+  /* SECTION COMMON */
+  section { padding: 80px 0; }
+  .section-label { display: inline-block; color: var(--blue-500); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+  .section-title { font-size: 2.2rem; font-weight: 800; color: var(--gray-900); margin-bottom: 16px; line-height: 1.25; }
+  .section-desc { font-size: 1.05rem; color: var(--gray-700); max-width: 640px; margin-bottom: 40px; }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+  .about-text p { margin-bottom: 16px; }
+  .skills-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+  .skill-tag { background: var(--blue-100); color: var(--blue-700); padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 500; }
+
+  /* STATS BAR */
+  .stats-bar { background: var(--gray-50); padding: 48px 0; }
+  .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; text-align: center; }
+  .stat-num { font-size: 2.5rem; font-weight: 800; color: var(--blue-500); line-height: 1; }
+  .stat-label { font-size: 0.9rem; color: var(--gray-700); margin-top: 6px; }
+
+  /* CAMPAIGNS */
+  .campaign-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+  .campaign-card {
+    background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius);
+    overflow: hidden; transition: all 0.3s;
+  }
+  .campaign-card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(0,0,0,0.08); }
+  .campaign-img { height: 160px; background: linear-gradient(135deg, var(--blue-100), #dbeafe); display: flex; align-items: center; justify-content: center; }
+  .campaign-img .icon { font-size: 3rem; opacity: 0.5; }
+  .campaign-body { padding: 20px; }
+  .campaign-body h3 { font-size: 1.1rem; color: var(--gray-900); margin-bottom: 8px; }
+  .campaign-body p { font-size: 0.9rem; color: var(--gray-700); margin-bottom: 12px; }
+  .campaign-metrics { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .metric { background: var(--gray-50); padding: 10px; border-radius: 6px; text-align: center; }
+  .metric-val { font-weight: 700; color: var(--blue-500); font-size: 1.15rem; }
+  .metric-lbl { font-size: 0.7rem; color: var(--gray-700); text-transform: uppercase; }
+  .metric-val.green { color: var(--green); }
+
+  /* TEMPLATES */
+  .template-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+  .template-card {
+    border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 24px;
+    transition: all 0.3s; cursor: default;
+  }
+  .template-card:hover { border-color: var(--blue-500); box-shadow: 0 8px 20px rgba(74,144,217,0.12); }
+  .template-type { font-size: 0.75rem; text-transform: uppercase; color: var(--blue-500); font-weight: 600; letter-spacing: 1px; }
+  .template-card h4 { font-size: 1.05rem; color: var(--gray-900); margin: 8px 0; }
+  .template-preview { background: var(--gray-50); height: 100px; border-radius: 6px; margin-top: 12px; display: flex; align-items: center; justify-content: center; font-size: 2rem; opacity: 0.4; }
+
+  /* BLOG */
+  .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
+  .blog-card {
+    background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius);
+    overflow: hidden; transition: all 0.3s; display: flex; flex-direction: column;
+  }
+  .blog-card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(0,0,0,0.08); }
+  .blog-card-img { height: 180px; background: linear-gradient(135deg, var(--blue-100), #dbeafe); display: flex; align-items: center; justify-content: center; font-size: 3rem; position: relative; }
+  .blog-tag { position: absolute; top: 12px; left: 12px; background: var(--blue-500); color: #fff; padding: 4px 12px; border-radius: 20px; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; }
+  .blog-card-body { padding: 20px; display: flex; flex-direction: column; flex: 1; }
+  .blog-date { font-size: 0.8rem; color: var(--blue-500); margin-bottom: 6px; }
+  .blog-card-body h3 { font-size: 1.1rem; color: var(--gray-900); margin-bottom: 8px; line-height: 1.35; }
+  .blog-card-body p { font-size: 0.9rem; color: var(--gray-700); margin-bottom: 14px; flex: 1; }
+  .read-more { color: var(--blue-500); font-weight: 600; font-size: 0.9rem; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; }
+  .read-more:hover { color: var(--blue-700); }
+
+  /* NEWSLETTER / SUBSCRIBE LIST */
+  .subscribe-section { background: var(--gray-50); padding: 64px 0; }
+  .subscribe-card {
+    background: var(--white); border-radius: var(--radius); padding: 48px;
+    border: 1px solid var(--gray-200); max-width: 700px; margin: 0 auto;
+  }
+  .subscribe-card h3 { font-size: 1.5rem; color: var(--gray-900); margin-bottom: 8px; }
+  .subscribe-card .sub-text { color: var(--gray-700); font-size: 0.95rem; margin-bottom: 20px; }
+  .subscribe-form { display: flex; gap: 10px; }
+  .subscribe-form input {
+    flex: 1; padding: 12px 16px; border: 1px solid var(--gray-200); border-radius: 8px;
+    font-size: 0.95rem; font-family: inherit; outline: none; transition: border 0.2s;
+  }
+  .subscribe-form input:focus { border-color: var(--blue-500); }
+  .subscribe-form button {
+    background: var(--blue-500); color: #fff; border: none; padding: 12px 24px;
+    border-radius: 8px; font-weight: 600; font-size: 0.95rem; cursor: pointer;
+    white-space: nowrap; transition: all 0.2s;
+  }
+  .subscribe-form button:hover { background: var(--blue-700); }
+  .subscribe-thanks { display: none; color: var(--green); font-weight: 600; margin-top: 12px; font-size: 0.95rem; }
+
+  /* TESTIMONIALS */
+  .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+  .testimonial-card {
+    background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius);
+    padding: 28px; position: relative;
+  }
+  .testimonial-card::before { content: '"'; position: absolute; top: 8px; left: 16px; font-size: 4rem; color: var(--blue-100); line-height: 1; }
+  .testimonial-card p { font-style: italic; margin-bottom: 16px; position: relative; z-index: 1; }
+  .testimonial-author { font-weight: 600; color: var(--gray-900); font-size: 0.9rem; }
+  .testimonial-role { font-size: 0.8rem; color: var(--gray-700); }
+
+  /* SERVICES */
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+  .service-card {
+    background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius);
+    padding: 28px; text-align: center; transition: all 0.3s;
+  }
+  .service-card:hover { border-color: var(--blue-500); transform: translateY(-2px); }
+  .service-icon { font-size: 2.2rem; margin-bottom: 12px; }
+  .service-card h4 { font-size: 1rem; color: var(--gray-900); margin-bottom: 6px; }
+  .service-card p { font-size: 0.85rem; color: var(--gray-700); }
+
+  /* CTA */
+  .cta-section { background: linear-gradient(135deg, var(--blue-900), var(--blue-700)); color: #fff; text-align: center; }
+  .cta-section .section-title { color: #fff; }
+  .cta-section .section-desc { color: rgba(255,255,255,0.85); margin: 0 auto 32px; }
+  .btn-white { background: #fff; color: var(--blue-700); padding: 12px 28px; border-radius: 8px; font-weight: 700; text-decoration: none; transition: all 0.2s; display: inline-block; }
+  .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+
+  /* CONTACT */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+  .contact-item { display: flex; gap: 12px; margin-bottom: 20px; align-items: center; }
+  .contact-icon { width: 40px; height: 40px; background: var(--blue-100); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+  .contact-item strong { display: block; color: var(--gray-900); font-size: 0.9rem; }
+  .contact-item span { font-size: 0.85rem; color: var(--gray-700); }
+
+  /* FOOTER */
+  footer { background: var(--gray-900); color: rgba(255,255,255,0.7); padding: 40px 0; }
+  footer .container { display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; font-size: 0.85rem; }
+  .footer-links { display: flex; gap: 20px; }
+  .footer-links a { color: rgba(255,255,255,0.7); text-decoration: none; }
+  .footer-links a:hover { color: var(--blue-500); }
+
+  /* POPUP MODAL */
+  .popup-overlay {
+    display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.55); z-index: 999; align-items: center; justify-content: center;
+  }
+  .popup-overlay.show { display: flex; }
+  .popup {
+    background: #fff; border-radius: var(--radius); max-width: 440px; width: 90%;
+    padding: 36px 32px; position: relative; text-align: center;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25); animation: popIn 0.35s ease;
+  }
+  @keyframes popIn {
+    from { opacity: 0; transform: scale(0.9) translateY(20px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  .popup-close {
+    position: absolute; top: 12px; right: 16px; background: none; border: none;
+    font-size: 1.5rem; cursor: pointer; color: var(--gray-700); line-height: 1;
+  }
+  .popup-close:hover { color: var(--gray-900); }
+  .popup-icon { font-size: 2.5rem; margin-bottom: 12px; }
+  .popup h3 { font-size: 1.4rem; color: var(--gray-900); margin-bottom: 8px; }
+  .popup p { font-size: 0.9rem; color: var(--gray-700); margin-bottom: 20px; }
+  .popup input {
+    width: 100%; padding: 12px; border: 1px solid var(--gray-200); border-radius: 8px;
+    font-size: 0.95rem; margin-bottom: 10px; font-family: inherit; outline: none;
+  }
+  .popup input:focus { border-color: var(--blue-500); }
+  .popup button {
+    width: 100%; background: var(--blue-500); color: #fff; border: none; padding: 12px;
+    border-radius: 8px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: all 0.2s;
+  }
+  .popup button:hover { background: var(--blue-700); }
+  .popup .no-thanks {
+    display: block; margin-top: 12px; font-size: 0.8rem; color: var(--gray-700);
+    text-decoration: underline; cursor: pointer; background: none; border: none;
+  }
+  .popup-thanks { display: none; padding: 16px 0; }
+  .popup-thanks .check { font-size: 3rem; margin-bottom: 8px; }
+  .popup-thanks p { color: var(--green); font-weight: 600; }
+
+  @media (max-width: 768px) {
+    .hero .container { grid-template-columns: 1fr; text-align: center; }
+    .hero p { margin-left: auto; margin-right: auto; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .hero h1 { font-size: 2.2rem; }
+    .section-title { font-size: 1.7rem; }
+    .nav-links { display: none; }
+    .subscribe-form { flex-direction: column; }
+    .subscribe-form button { width: 100%; }
+    .subscribe-card { padding: 28px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <div class="logo">Ahmad<span>.</span>Hasan</div>
+    <ul class="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#templates">Templates</a></li>
+      <li><a href="#blog">Blog</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#testimonials">Testimonials</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#subscribe" class="btn-primary">Get My Tips</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div>
+      <div class="hero-badge">📧 Email Marketing Specialist</div>
+      <h1>I turn <span>inboxes</span> into revenue engines</h1>
+      <p>Data-driven email campaigns that drive opens, clicks, and conversions. 50+ campaigns delivered with an average 38% open rate.</p>
+      <a href="#work" class="btn-white" style="margin-right:12px">View My Work</a>
+      <a href="#subscribe" class="btn-primary" style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3)">Join My Email List</a>
+    </div>
+    <div class="hero-visual">
+      <div class="dashboard-mock">
+        <div class="dash-header">📊 Campaign Dashboard</div>
+        <div class="stat-row">
+          <div class="stat-card"><div class="stat-val">38.2%</div><div class="stat-lbl">Open Rate</div></div>
+          <div class="stat-card"><div class="stat-val">6.8%</div><div class="stat-lbl">CTR</div></div>
+          <div class="stat-card"><div class="stat-val">0.2%</div><div class="stat-lbl">Unsub</div></div>
+        </div>
+        <div class="dash-header">Campaign Performance</div>
+        <div class="chart-bar">
+          <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+          <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats-bar">
+  <div class="container">
+    <div class="stats-grid">
+      <div><div class="stat-num">50+</div><div class="stat-label">Campaigns Delivered</div></div>
+      <div><div class="stat-num">2.4M+</div><div class="stat-label">Emails Sent</div></div>
+      <div><div class="stat-num">38.2%</div><div class="stat-label">Avg. Open Rate</div></div>
+      <div><div class="stat-num">$480K+</div><div class="stat-label">Client Revenue</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section>
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text">
+        <span class="section-label">About Me</span>
+        <h2 class="section-title">Email marketing that doesn't feel like marketing</h2>
+        <p>I'm Ahmad Hasan — an email marketer who treats every campaign like a conversation, not a broadcast. I build sequences that respect the reader, deliver value first, and convert naturally.</p>
+        <p>From welcome flows to re-engagement win-backs, I've designed, written, and optimized email programs for SaaS, e-commerce, and B2B clients across the globe.</p>
+        <div class="skills-list">
+          <span class="skill-tag">Klaviyo</span>
+          <span class="skill-tag">Mailchimp</span>
+          <span class="skill-tag">HubSpot</span>
+          <span class="skill-tag">ConvertKit</span>
+          <span class="skill-tag">A/B Testing</span>
+          <span class="skill-tag">HTML/CSS Email</span>
+          <span class="skill-tag">List Segmentation</span>
+          <span class="skill-tag">Copywriting</span>
+          <span class="skill-tag">Analytics</span>
+          <span class="skill-tag">Automation</span>
+        </div>
+      </div>
+      <div class="about-text">
+        <span class="section-label">My Approach</span>
+        <h2 class="section-title">Strategy → Copy → Design → Optimize</h2>
+        <p><strong>1. Strategy First.</strong> I map your customer journey, segment your list, and plan flows that make sense for your business.</p>
+        <p><strong>2. Copy That Converts.</strong> Subject lines people open. Body copy people read. CTAs people click. No fluff.</p>
+        <p><strong>3. Design That Renders.</strong> Responsive templates that look great in Gmail, Outlook, and every client in between.</p>
+        <p><strong>4. Measure & Iterate.</strong> Every send is a learning opportunity. I track, report, and continuously improve.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAMPAIGNS -->
+<section id="work" style="background: var(--gray-50)">
+  <div class="container">
+    <span class="section-label">Featured Work</span>
+    <h2 class="section-title">Campaigns that delivered results</h2>
+    <p class="section-desc">A selection of recent email marketing campaigns — from strategy through execution to measurable outcomes.</p>
+    <div class="campaign-grid">
+      <div class="campaign-card">
+        <div class="campaign-img"><span class="icon">🛒</span></div>
+        <div class="campaign-body">
+          <h3>E-Commerce Welcome Series</h3>
+          <p>5-email automated welcome flow for a DTC skincare brand. Personalized product recommendations + founder story.</p>
+          <div class="campaign-metrics">
+            <div class="metric"><div class="metric-val">54.1%</div><div class="metric-lbl">Open Rate</div></div>
+            <div class="metric"><div class="metric-val green">12.3%</div><div class="metric-lbl">Conversion</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="campaign-card">
+        <div class="campaign-img"><span class="icon">💻</span></div>
+        <div class="campaign-body">
+          <h3>SaaS Re-engagement Flow</h3>
+          <p>Win-back sequence for a B2B SaaS tool with 90-day inactive users. Feature spotlight + case study + special offer.</p>
+          <div class="campaign-metrics">
+            <div class="metric"><div class="metric-val">32.7%</div><div class="metric-lbl">Open Rate</div></div>
+            <div class="metric"><div class="metric-val green">18%</div><div class="metric-lbl">Re-activation</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="campaign-card">
+        <div class="campaign-img"><span class="icon">🎓</span></div>
+        <div class="campaign-body">
+          <h3>Course Launch Campaign</h3>
+          <p>Pre-launch teaser + launch + urgency sequence for an online course creator. 7 emails over 14 days.</p>
+          <div class="campaign-metrics">
+            <div class="metric"><div class="metric-val">41.5%</div><div class="metric-lbl">Open Rate</div></div>
+            <div class="metric"><div class="metric-val green">$42K</div><div class="metric-lbl">Revenue</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="campaign-card">
+        <div class="campaign-img"><span class="icon">📰</span></div>
+        <div class="campaign-body">
+          <h3>Weekly Newsletter Optimization</h3>
+          <p>Redesigned + re-written weekly newsletter for a tech media company. Focus on scannability and click-through.</p>
+          <div class="campaign-metrics">
+            <div class="metric"><div class="metric-val">29.8%</div><div class="metric-lbl">Open Rate</div></div>
+            <div class="metric"><div class="metric-val green">8.4%</div><div class="metric-lbl">CTR</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="campaign-card">
+        <div class="campaign-img"><span class="icon">🎁</span></div>
+        <div class="campaign-body">
+          <h3>Black Friday Drip</h3>
+          <p>Multi-touch BFCM campaign for a fashion retailer. Early access → countdown → last chance framework.</p>
+          <div class="campaign-metrics">
+            <div class="metric"><div class="metric-val">36.9%</div><div class="metric-lbl">Open Rate</div></div>
+            <div class="metric"><div class="metric-val green">$127K</div><div class="metric-lbl">Revenue</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="campaign-card">
+        <div class="campaign-img"><span class="icon">🔄</span></div>
+        <div class="campaign-body">
+          <h3>Cart Abandonment Flow</h3>
+          <p>3-email recovery sequence with dynamic product images, social proof, and timed discount escalation.</p>
+          <div class="campaign-metrics">
+            <div class="metric"><div class="metric-val">45.3%</div><div class="metric-lbl">Open Rate</div></div>
+            <div class="metric"><div class="metric-val green">22%</div><div class="metric-lbl">Recovery</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEMPLATES -->
+<section id="templates">
+  <div class="container">
+    <span class="section-label">Email Templates</span>
+    <h2 class="section-title">Designs that render — everywhere</h2>
+    <p class="section-desc">Clean, responsive HTML email templates tested across Gmail, Outlook, Apple Mail, and mobile clients.</p>
+    <div class="template-grid">
+      <div class="template-card">
+        <div class="template-type">Welcome</div>
+        <h4>Brand Welcome</h4>
+        <p style="font-size:0.85rem;color:var(--gray-700)">Hero image + founder note + 3-step CTA</p>
+        <div class="template-preview">📬</div>
+      </div>
+      <div class="template-card">
+        <div class="template-type">Newsletter</div>
+        <h4>Weekly Digest</h4>
+        <p style="font-size:0.85rem;color:var(--gray-700)">Curated content + quick reads + featured article</p>
+        <div class="template-preview">📰</div>
+      </div>
+      <div class="template-card">
+        <div class="template-type">Promotional</div>
+        <h4>Product Launch</h4>
+        <p style="font-size:0.85rem;color:var(--gray-700)">Bold hero + features grid + urgency CTA</p>
+        <div class="template-preview">🚀</div>
+      </div>
+      <div class="template-card">
+        <div class="template-type">Transactional</div>
+        <h4>Order Confirmation</h4>
+        <p style="font-size:0.85rem;color:var(--gray-700)">Clean receipt + upsell + tracking</p>
+        <div class="template-preview">✅</div>
+      </div>
+      <div class="template-card">
+        <div class="template-type">Re-engagement</div>
+        <h4>Win-Back</h4>
+        <p style="font-size:0.85rem;color:var(--gray-700)">Personalized subject + incentive + urgency</p>
+        <div class="template-preview">💌</div>
+      </div>
+      <div class="template-card">
+        <div class="template-type">Nurture</div>
+        <h4>Lead Nurture Drip</h4>
+        <p style="font-size:0.85rem;color:var(--gray-700)">Value-first sequence with soft CTAs</p>
+        <div class="template-preview">🌱</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section id="blog" style="background: var(--gray-50)">
+  <div class="container">
+    <span class="section-label">Blog</span>
+    <h2 class="section-title">Insights & how-tos</h2>
+    <p class="section-desc">Deep dives into email marketing strategy, real campaign breakdowns, and actionable tips you can use today.</p>
+    <div class="blog-grid">
+      <div class="blog-card">
+        <div class="blog-card-img">
+          🧪<span class="blog-tag">Strategy</span>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-date">July 22, 2026</div>
+          <h3>The 7-Subject-Line Framework That Doubled My Open Rates</h3>
+          <p>After testing 200+ subject lines across 50 campaigns, I found seven patterns that consistently outperform everything else. Here's the exact formula.</p>
+          <a href="#" class="read-more">Read more →</a>
+        </div>
+      </div>
+      <div class="blog-card">
+        <div class="blog-card-img">
+          🔧<span class="blog-tag">Tutorial</span>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-date">July 8, 2026</div>
+          <h3>How to Set Up a Welcome Flow in Klaviyo (Step-by-Step)</h3>
+          <p>From trigger setup to split-testing your first email — a complete walkthrough for building a welcome series that converts 12%+ of new subscribers.</p>
+          <a href="#" class="read-more">Read more →</a>
+        </div>
+      </div>
+      <div class="blog-card">
+        <div class="blog-card-img">
+          📊<span class="blog-tag">Data</span>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-date">June 18, 2026</div>
+          <h3>Segmentation vs. Blasting: A Real A/B Test With $50K in Revenue at Stake</h3>
+          <p>We ran a controlled experiment — one list sent the same email, the other got four variants by segment. The results changed how I build every campaign.</p>
+          <a href="#" class="read-more">Read more →</a>
+        </div>
+      </div>
+      <div class="blog-card">
+        <div class="blog-card-img">
+          🎯<span class="blog-tag">CTR</span>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-date">May 30, 2026</div>
+          <h3>5 Tiny Design Tweaks That Boosted CTR by 40%</h3>
+          <p>Button placement, font size, white space — small visual changes with outsized impact. Before-and-after heatmap breakdown included.</p>
+          <a href="#" class="read-more">Read more →</a>
+        </div>
+      </div>
+      <div class="blog-card">
+        <div class="blog-card-img">
+          🗓️<span class="blog-tag">Planning</span>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-date">May 12, 2026</div>
+          <h3>The Ultimate Q4 Email Calendar: What to Send and When</h3>
+          <p>BFCM, holiday gifting, end-of-year recap — map your entire Q4 email strategy with this week-by-week planning template.</p>
+          <a href="#" class="read-more">Read more →</a>
+        </div>
+      </div>
+      <div class="blog-card">
+        <div class="blog-card-img">
+          🤖<span class="blog-tag">Automation</span>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-date">April 25, 2026</div>
+          <h3>Beyond Welcome: 4 Automated Flows Every eCom Brand Needs</h3>
+          <p>Most brands stop at welcome. You need browse abandon, cart abandon, post-purchase, and win-back. Here's how to wire them up.</p>
+          <a href="#" class="read-more">Read more →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="container">
+    <span class="section-label">Testimonials</span>
+    <h2 class="section-title">What clients say</h2>
+    <div class="testimonial-grid">
+      <div class="testimonial-card">
+        <p>Ahmad transformed our email program. Our welcome series alone now generates 22% of our monthly revenue. The data speaks for itself.</p>
+        <div class="testimonial-author">Sarah Chen</div>
+        <div class="testimonial-role">CMO, GlowDerm</div>
+      </div>
+      <div class="testimonial-card">
+        <p>We'd been sending the same newsletter for two years. Ahmad redesigned it, rewrote it, and our CTR tripled in 30 days. Unreal.</p>
+        <div class="testimonial-author">Marcus Webb</div>
+        <div class="testimonial-role">Founder, DevPulse</div>
+      </div>
+      <div class="testimonial-card">
+        <p>His cart abandonment flow recovered $127K in 6 weeks during our BFCM. We've been working together ever since.</p>
+        <div class="testimonial-author">Priya Mehta</div>
+        <div class="testimonial-role">Head of Growth, StyleLoop</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <span class="section-label">Services</span>
+    <h2 class="section-title">What I can do for you</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">📋</div>
+        <h4>Email Strategy</h4>
+        <p>Audit, segmentation plan, customer journey mapping, and KPI framework.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">✍️</div>
+        <h4>Copywriting</h4>
+        <p>Subject lines, body copy, CTAs — every word optimized for opens and clicks.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🎨</div>
+        <h4>Template Design</h4>
+        <p>Responsive HTML emails tested across 20+ clients and devices.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">⚙️</div>
+        <h4>Automation Setup</h4>
+        <p>Welcome flows, abandon cart, win-back, post-purchase, and more.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📊</div>
+        <h4>Analytics & Reporting</h4>
+        <p>Dashboards, weekly reports, and actionable insights from your data.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🧪</div>
+        <h4>A/B Testing</h4>
+        <p>Hypothesis-driven testing on subject lines, send times, layouts, and CTAs.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUBSCRIBE / EMAIL LIST -->
+<section id="subscribe" class="subscribe-section">
+  <div class="container">
+    <div class="subscribe-card">
+      <span class="section-label">📬 Free Email Tips</span>
+      <h3>Join my email list</h3>
+      <p class="sub-text">Get one actionable email marketing tip every week — real data, real examples, zero fluff. Unsubscribe anytime.</p>
+      <form class="subscribe-form" id="subscribeForm" onsubmit="handleSubscribe(event)">
+        <input type="email" id="subEmail" placeholder="you@example.com" required>
+        <button type="submit">Subscribe Free</button>
+      </form>
+      <div class="subscribe-thanks" id="subThanks">✅ You're in! Check your inbox for the first tip.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <h2 class="section-title">Ready to level up your email game?</h2>
+    <p class="section-desc">Let's build a strategy that turns your list into your highest-ROI channel. No fluff — just results.</p>
+    <a href="#contact" class="btn-white">Start a Conversation</a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <span class="section-label">Get In Touch</span>
+    <h2 class="section-title">Let's work together</h2>
+    <div class="contact-grid">
+      <div>
+        <div class="contact-item">
+          <div class="contact-icon">📧</div>
+          <div><strong>Email</strong><span>ahmad405413@gmail.com</span></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🌐</div>
+          <div><strong>Website</strong><span>ahmadhasan.portfolio</span></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">💼</div>
+          <div><strong>LinkedIn</strong><span>linkedin.com/in/ahmadhasan</span></div>
+        </div>
+      </div>
+      <div>
+        <p style="margin-bottom:20px;font-weight:500;color:var(--gray-900)">Drop me a message — I'll get back to you within 24 hours.</p>
+        <a href="mailto:ahmad405413@gmail.com" class="btn-primary" style="width:100%;text-align:center">Send Email →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p>© 2026 Ahmad Hasan · Email Marketing Portfolio</p>
+    <div class="footer-links">
+      <a href="#work">Work</a>
+      <a href="#blog">Blog</a>
+      <a href="#subscribe">Email List</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <p style="opacity:0.6">Built with 💙 and data-driven conviction</p>
+  </div>
+</footer>
+
+<!-- POPUP MODAL -->
+<div class="popup-overlay" id="popupOverlay">
+  <div class="popup" id="popup">
+    <button class="popup-close" onclick="closePopup()">×</button>
+    <!-- Default state -->
+    <div id="popupForm">
+      <div class="popup-icon">📬</div>
+      <h3>Want better email results?</h3>
+      <p>Join 2,400+ marketers getting one actionable tip every week. Free.</p>
+      <input type="email" id="popupEmail" placeholder="Your best email">
+      <button onclick="handlePopupSubscribe()">Send Me Tips</button>
+      <span class="no-thanks" onclick="closePopup()">No thanks, I'll figure it out myself</span>
+    </div>
+    <!-- Thanks state -->
+    <div class="popup-thanks" id="popupThanks">
+      <div class="check">✅</div>
+      <p>Awesome — you're on the list!</p>
+      <p style="color:var(--gray-700);font-weight:400;font-size:0.85rem;margin-top:8px">Check your inbox for your first tip.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Popup appears after 8 seconds
+  setTimeout(function() {
+    var overlay = document.getElementById('popupOverlay');
+    if (!sessionStorage.getItem('popupClosed')) {
+      overlay.classList.add('show');
+    }
+  }, 8000);
+
+  function closePopup() {
+    document.getElementById('popupOverlay').classList.remove('show');
+    sessionStorage.setItem('popupClosed', 'true');
+  }
+
+  // Close popup when clicking outside
+  document.getElementById('popupOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closePopup();
+  });
+
+  function handlePopupSubscribe() {
+    var email = document.getElementById('popupEmail').value;
+    if (!email || !email.includes('@')) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+    document.getElementById('popupForm').style.display = 'none';
+    document.getElementById('popupThanks').style.display = 'block';
+    setTimeout(function() { closePopup(); }, 2500);
+  }
+
+  // Inline subscribe form handler
+  function handleSubscribe(e) {
+    e.preventDefault();
+    var email = document.getElementById('subEmail').value;
+    if (!email || !email.includes('@')) return;
+    document.getElementById('subscribeForm').style.display = 'none';
+    document.getElementById('subThanks').style.display = 'block';
+  }
+</script>
+
+</body>
+</html>
