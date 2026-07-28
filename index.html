@@ -618,8 +618,9 @@
       <span class="section-label">📬 Free Email Tips</span>
       <h3>Join my email list</h3>
       <p class="sub-text">Get one actionable email marketing tip every week — real data, real examples, zero fluff. Unsubscribe anytime.</p>
-      <form class="subscribe-form" id="subscribeForm" onsubmit="handleSubscribe(event)">
-        <input type="email" id="subEmail" placeholder="you@example.com" required>
+      <form class="subscribe-form" id="subscribeForm" action="https://formspree.io/f/mojgrrpr" method="POST">
+        <input type="email" name="email" id="subEmail" placeholder="you@example.com" required>
+        <input type="hidden" name="_subject" value="New subscriber from InboxFlow">
         <button type="submit">Subscribe Free</button>
       </form>
       <div class="subscribe-thanks" id="subThanks">✅ You're in! Check your inbox for the first tip.</div>
@@ -687,8 +688,11 @@
       <div class="popup-icon">📬</div>
       <h3>Want better email results?</h3>
       <p>Join 2,400+ marketers getting one actionable tip every week. Free.</p>
-      <input type="email" id="popupEmail" placeholder="Your best email">
-      <button onclick="handlePopupSubscribe()">Send Me Tips</button>
+      <form id="popupFormInner" action="https://formspree.io/f/mojgrrpr" method="POST">
+        <input type="email" name="email" id="popupEmail" placeholder="Your best email" required>
+        <input type="hidden" name="_subject" value="New popup subscriber from InboxFlow">
+        <button type="submit">Send Me Tips</button>
+      </form>
       <span class="no-thanks" onclick="closePopup()">No thanks, I'll figure it out myself</span>
     </div>
     <!-- Thanks state -->
@@ -719,25 +723,22 @@
     if (e.target === this) closePopup();
   });
 
-  function handlePopupSubscribe() {
-    var email = document.getElementById('popupEmail').value;
-    if (!email || !email.includes('@')) {
-      alert('Please enter a valid email address.');
-      return;
-    }
-    document.getElementById('popupForm').style.display = 'none';
-    document.getElementById('popupThanks').style.display = 'block';
-    setTimeout(function() { closePopup(); }, 2500);
-  }
+  // Show thank-you after popup form submits (Formspree handles the actual POST)
+  document.getElementById('popupFormInner').addEventListener('submit', function() {
+    setTimeout(function() {
+      document.getElementById('popupForm').style.display = 'none';
+      document.getElementById('popupThanks').style.display = 'block';
+      setTimeout(function() { closePopup(); }, 2500);
+    }, 300);
+  });
 
-  // Inline subscribe form handler
-  function handleSubscribe(e) {
-    e.preventDefault();
+  // Show thank-you after inline subscribe form submits
+  document.getElementById('subscribeForm').addEventListener('submit', function() {
     var email = document.getElementById('subEmail').value;
     if (!email || !email.includes('@')) return;
     document.getElementById('subscribeForm').style.display = 'none';
     document.getElementById('subThanks').style.display = 'block';
-  }
+  });
 </script>
 
 </body>
