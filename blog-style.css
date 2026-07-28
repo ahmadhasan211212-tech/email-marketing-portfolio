@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --blue-900: #1e3a5f;
+  --blue-700: #2a5298;
+  --blue-500: #4a90d9;
+  --blue-100: #e8f0fe;
+  --gray-50: #f8fafc;
+  --gray-200: #e2e8f0;
+  --gray-700: #334155;
+  --gray-900: #0f172a;
+  --white: #ffffff;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  color: var(--gray-700);
+  background: var(--white);
+  line-height: 1.75;
+}
+
+.container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+.back-link { text-decoration: none; color: var(--blue-500); font-weight: 500; font-size: 0.9rem; margin-right: 20px; }
+.back-link:hover { color: var(--blue-700); }
+
+.tag {
+  display: inline-block; padding: 4px 12px; border-radius: 20px; font-weight: 600;
+  font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; margin: 16px 0 8px;
+}
+.tag.strategy, .tag.tutorial, .tag.data, .tag.ctr, .tag.planning, .tag.automation { background: var(--blue-500); color: #fff; }
+
+.blog-header {
+  padding: 60px 0 30px;
+  border-bottom: 1px solid var(--gray-200);
+  margin-bottom: 40px;
+}
+
+.blog-header h1 {
+  font-size: 2.2rem; font-weight: 800; color: var(--gray-900);
+  line-height: 1.25; margin-bottom: 8px;
+}
+
+.meta { font-size: 0.85rem; color: var(--gray-700); }
+
+.blog-content { padding-bottom: 60px; }
+
+.blog-content h2 {
+  font-size: 1.4rem; font-weight: 700; color: var(--gray-900);
+  margin: 36px 0 12px;
+}
+
+.blog-content p { margin-bottom: 16px; font-size: 1.05rem; }
+
+.blog-content ul, .blog-content ol {
+  margin: 12px 0 20px; padding-left: 24px;
+}
+
+.blog-content li { margin-bottom: 8px; font-size: 1.02rem; }
+
+.blog-content table {
+  width: 100%; border-collapse: collapse; margin: 20px 0;
+  font-size: 0.95rem;
+}
+
+.blog-content th { background: var(--gray-50); padding: 10px 12px; text-align: left; font-weight: 600; color: var(--gray-900); border-bottom: 2px solid var(--gray-200); }
+.blog-content td { padding: 10px 12px; border-bottom: 1px solid var(--gray-200); }
+
+.blog-content blockquote {
+  border-left: 3px solid var(--blue-500); padding: 8px 16px;
+  margin: 16px 0; background: var(--gray-50); color: var(--gray-700);
+}
+
+.blog-content hr { border: none; border-top: 1px solid var(--gray-200); margin: 40px 0; }
+
+@media (max-width: 768px) {
+  .blog-header h1 { font-size: 1.5rem; }
+  .blog-content h2 { font-size: 1.2rem; }
+}

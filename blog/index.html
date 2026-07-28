@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — Ahmad Hasan · InboxFlow</title>
+<style>
+  :root {
+    --blue-900: #1e3a5f; --blue-700: #2a5298; --blue-500: #4a90d9;
+    --blue-100: #e8f0fe; --gray-50: #f8fafc; --gray-200: #e2e8f0;
+    --gray-700: #334155; --gray-900: #0f172a; --white: #ffffff;
+    --accent: #f59e0b; --radius: 12px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', -apple-system, sans-serif; color: var(--gray-700); background: var(--white); line-height: 1.6; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,255,255,0.95); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--gray-200);
+  }
+  nav .container { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .logo { font-weight: 800; font-size: 1.25rem; color: var(--blue-900); text-decoration: none; }
+  .logo span { color: var(--blue-500); }
+  nav a { text-decoration: none; color: var(--gray-700); font-weight: 500; font-size: 0.9rem; }
+  nav a:hover { color: var(--blue-500); }
+
+  .page-header { padding: 120px 0 50px; text-align: center; }
+  .page-header h1 { font-size: 2.5rem; font-weight: 800; color: var(--gray-900); }
+  .page-header p { font-size: 1.05rem; color: var(--gray-700); max-width: 600px; margin: 10px auto 0; }
+
+  .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 28px; padding-bottom: 80px; }
+  .blog-card {
+    background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius);
+    overflow: hidden; transition: all 0.3s; display: flex; flex-direction: column; text-decoration: none; color: inherit;
+  }
+  .blog-card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(0,0,0,0.08); }
+  .card-img { height: 180px; display: flex; align-items: center; justify-content: center; font-size: 3rem; position: relative; }
+  .card-tag {
+    position: absolute; top: 12px; left: 12px; background: var(--blue-500); color: #fff;
+    padding: 4px 12px; border-radius: 20px; font-size: 0.7rem; font-weight: 600; text-transform: uppercase;
+  }
+  .card-body { padding: 20px; display: flex; flex-direction: column; flex: 1; }
+  .card-date { font-size: 0.8rem; color: var(--blue-500); margin-bottom: 6px; }
+  .card-body h3 { font-size: 1.1rem; color: var(--gray-900); margin-bottom: 8px; line-height: 1.35; }
+  .card-body p { font-size: 0.9rem; color: var(--gray-700); margin-bottom: 14px; flex: 1; }
+  .read-more { color: var(--blue-500); font-weight: 600; font-size: 0.9rem; }
+
+  footer { background: var(--gray-900); color: rgba(255,255,255,0.7); padding: 32px 0; text-align: center; font-size: 0.85rem; }
+  footer a { color: rgba(255,255,255,0.7); }
+  footer a:hover { color: var(--blue-500); }
+
+  @media (max-width: 768px) { .page-header h1 { font-size: 1.8rem; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a href="../index.html" class="logo">Ahmad<span>.</span>Hasan</a>
+    <a href="../index.html">← Back to Portfolio</a>
+  </div>
+</nav>
+
+<section class="page-header">
+  <div class="container">
+    <h1>InboxFlow Blog</h1>
+    <p>Deep dives into email marketing strategy, real campaign breakdowns, and actionable tips.</p>
+  </div>
+</section>
+
+<section class="container">
+  <div class="blog-grid">
+    <a href="7-subject-line-framework.html" class="blog-card">
+      <div class="card-img" style="background:linear-gradient(135deg,var(--blue-100),#dbeafe)">🧪<span class="card-tag">Strategy</span></div>
+      <div class="card-body">
+        <div class="card-date">July 22, 2026</div>
+        <h3>The 7-Subject-Line Framework That Doubled My Open Rates</h3>
+        <p>After testing 200+ subject lines across 50 campaigns, I found seven patterns that consistently outperform everything else.</p>
+        <span class="read-more">Read more →</span>
+      </div>
+    </a>
+    <a href="klaviyo-welcome-flow.html" class="blog-card">
+      <div class="card-img" style="background:linear-gradient(135deg,#dbeafe,#c7d2fe)">🔧<span class="card-tag">Tutorial</span></div>
+      <div class="card-body">
+        <div class="card-date">July 8, 2026</div>
+        <h3>How to Set Up a Welcome Flow in Klaviyo (Step-by-Step)</h3>
+        <p>From trigger setup to split-testing — a complete walkthrough for a welcome series that converts 12%+.</p>
+        <span class="read-more">Read more →</span>
+      </div>
+    </a>
+    <a href="segmentation-vs-blasting.html" class="blog-card">
+      <div class="card-img" style="background:linear-gradient(135deg,var(--blue-100),#e0e7ff)">📊<span class="card-tag">Data</span></div>
+      <div class="card-body">
+        <div class="card-date">June 18, 2026</div>
+        <h3>Segmentation vs. Blasting: A Real A/B Test With $50K in Revenue at Stake</h3>
+        <p>One list got the same email. The other got four segment variants. The results changed everything.</p>
+        <span class="read-more">Read more →</span>
+      </div>
+    </a>
+    <a href="5-design-tweaks-ctr.html" class="blog-card">
+      <div class="card-img" style="background:linear-gradient(135deg,#d1fae5,#a7f3d0)">🎯<span class="card-tag">CTR</span></div>
+      <div class="card-body">
+        <div class="card-date">May 30, 2026</div>
+        <h3>5 Tiny Design Tweaks That Boosted CTR by 40%</h3>
+        <p>Button placement, font size, white space — small changes with outsized impact.</p>
+        <span class="read-more">Read more →</span>
+      </div>
+    </a>
+    <a href="q4-email-calendar.html" class="blog-card">
+      <div class="card-img" style="background:linear-gradient(135deg,#fef3c7,#fde68a)">🗓️<span class="card-tag">Planning</span></div>
+      <div class="card-body">
+        <div class="card-date">May 12, 2026</div>
+        <h3>The Ultimate Q4 Email Calendar: What to Send and When</h3>
+        <p>BFCM, holiday gifting, end-of-year recap — map your entire Q4 email strategy week-by-week.</p>
+        <span class="read-more">Read more →</span>
+      </div>
+    </a>
+    <a href="4-automated-flows-ecom.html" class="blog-card">
+      <div class="card-img" style="background:linear-gradient(135deg,#ede9fe,#ddd6fe)">🤖<span class="card-tag">Automation</span></div>
+      <div class="card-body">
+        <div class="card-date">April 25, 2026</div>
+        <h3>Beyond Welcome: 4 Automated Flows Every eCom Brand Needs</h3>
+        <p>Browse abandon, cart abandon, post-purchase, and win-back. Wire them up once, profit forever.</p>
+        <span class="read-more">Read more →</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Ahmad Hasan · <a href="../index.html">InboxFlow</a></p>
+</footer>
+
+</body>
+</html>
