@@ -702,9 +702,10 @@
       <span class="section-label"><i data-lucide="mail" class="icon icon--md"></i>Free Email Tips</span>
       <h3>Join our email list</h3>
       <p class="sub-text">Get one actionable email marketing tip every week — real data, real examples, zero fluff. Unsubscribe anytime.</p>
-      <form class="subscribe-form" id="subscribeForm" id="subscribeForm">
-        <input type="email" id="subEmail" placeholder="you@example.com" required>
-        <button type="button" id="subBtn" onclick="subscribeUser()">Subscribe Free</button>
+      <form class="subscribe-form" action="https://formspree.io/f/mojgrrpr" method="POST" action="https://formspree.io/f/mojgrrpr" method="POST">
+        <input type="email" name="email" id="subEmail" placeholder="you@example.com" required>
+        <input type="hidden" name="_subject" value="New subscriber from Automate Sends">
+        <button type="submit">Subscribe Free</button>
       </form>
       <div class="subscribe-thanks" id="subThanks">✅ You're in! Check your inbox for the first tip.</div>
     </div>
@@ -734,7 +735,7 @@
         </div>
       <div>
         <p style="margin-bottom:20px;font-weight:500;color:var(--gray-900)">Drop us a message — we'll get back to you within 24 hours.</p>
-        <button class="btn-primary" id="contactSubmit" style="width:100%;text-align:center" onclick="submitContact()">Send Message →</button>
+        <a href="mailto:ahmad405413@gmail.com" class="btn-primary" style="width:100%;text-align:center">Send Email →</a>
       </div>
     </div>
   </div>
