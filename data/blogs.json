@@ -1,0 +1,74 @@
+[
+  {
+    "id": "7-subject-line-framework",
+    "title": "The 7-Subject-Line Framework That Doubled Our Open Rates",
+    "slug": "7-subject-line-framework",
+    "category": "Strategy",
+    "date": "2026-07-22",
+    "author": "Ahmad Hasan",
+    "readTime": "8 min read",
+    "excerpt": "After testing 200+ subject lines across 50 campaigns, we found seven patterns that consistently outperform everything else. Here's the exact formula.",
+    "image": "🧪",
+    "published": true
+  },
+  {
+    "id": "klaviyo-welcome-flow",
+    "title": "How to Set Up a Welcome Flow in Klaviyo (Step-by-Step)",
+    "slug": "klaviyo-welcome-flow",
+    "category": "Tutorial",
+    "date": "2026-07-08",
+    "author": "Ahmad Hasan",
+    "readTime": "12 min read",
+    "excerpt": "From trigger setup to split-testing — a complete walkthrough for a welcome series that converts 12%+.",
+    "image": "🔧",
+    "published": true
+  },
+  {
+    "id": "segmentation-vs-blasting",
+    "title": "Segmentation vs. Blasting: A Real A/B Test With $50K at Stake",
+    "slug": "segmentation-vs-blasting",
+    "category": "Data",
+    "date": "2026-06-18",
+    "author": "Ahmad Hasan",
+    "readTime": "10 min read",
+    "excerpt": "We ran a controlled experiment — one list got the same email, the other got four segment variants. The results changed everything.",
+    "image": "📊",
+    "published": true
+  },
+  {
+    "id": "5-design-tweaks-ctr",
+    "title": "5 Tiny Design Tweaks That Boosted CTR by 40%",
+    "slug": "5-design-tweaks-ctr",
+    "category": "CTR",
+    "date": "2026-05-30",
+    "author": "Ahmad Hasan",
+    "readTime": "6 min read",
+    "excerpt": "Button placement, font size, white space — small changes with outsized impact.",
+    "image": "🎯",
+    "published": true
+  },
+  {
+    "id": "q4-email-calendar",
+    "title": "The Ultimate Q4 Email Calendar: What to Send and When",
+    "slug": "q4-email-calendar",
+    "category": "Planning",
+    "date": "2026-05-12",
+    "author": "Ahmad Hasan",
+    "readTime": "10 min read",
+    "excerpt": "BFCM, holiday gifting, end-of-year recap — map your entire Q4 email strategy week-by-week.",
+    "image": "🗓️",
+    "published": true
+  },
+  {
+    "id": "4-automated-flows-ecom",
+    "title": "Beyond Welcome: 4 Automated Flows Every eCom Brand Needs",
+    "slug": "4-automated-flows-ecom",
+    "category": "Automation",
+    "date": "2026-04-25",
+    "author": "Ahmad Hasan",
+    "readTime": "9 min read",
+    "excerpt": "Browse abandon, cart abandon, post-purchase, and win-back. Wire them up once, profit forever.",
+    "image": "🤖",
+    "published": true
+  }
+]

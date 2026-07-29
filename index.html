@@ -702,10 +702,9 @@
       <span class="section-label"><i data-lucide="mail" class="icon icon--md"></i>Free Email Tips</span>
       <h3>Join our email list</h3>
       <p class="sub-text">Get one actionable email marketing tip every week — real data, real examples, zero fluff. Unsubscribe anytime.</p>
-      <form class="subscribe-form" id="subscribeForm" action="https://formspree.io/f/mojgrrpr" method="POST">
-        <input type="email" name="email" id="subEmail" placeholder="you@example.com" required>
-        <input type="hidden" name="_subject" value="New subscriber from Automate Sends">
-        <button type="submit">Subscribe Free</button>
+      <form class="subscribe-form" id="subscribeForm" id="subscribeForm">
+        <input type="email" id="subEmail" placeholder="you@example.com" required>
+        <button type="button" id="subBtn" onclick="subscribeUser()">Subscribe Free</button>
       </form>
       <div class="subscribe-thanks" id="subThanks">✅ You're in! Check your inbox for the first tip.</div>
     </div>
@@ -735,7 +734,7 @@
         </div>
       <div>
         <p style="margin-bottom:20px;font-weight:500;color:var(--gray-900)">Drop us a message — we'll get back to you within 24 hours.</p>
-        <a href="mailto:ahmad405413@gmail.com" class="btn-primary" style="width:100%;text-align:center">Send Email →</a>
+        <button class="btn-primary" id="contactSubmit" style="width:100%;text-align:center" onclick="submitContact()">Send Message →</button>
       </div>
     </div>
   </div>
@@ -756,14 +755,52 @@
 </footer>
 
 <script>
-  document.getElementById("subscribeForm").addEventListener("submit", function() {
-    var email = document.getElementById("subEmail").value;
-    if (!email || !email.includes("@")) return;
-    document.getElementById("subscribeForm").style.display = "none";
-    document.getElementById("subThanks").style.display = "block";
-  });
-  lucide.createIcons();
-</script>
+  // --- API Helpers ---
+  const API_BASE = window.location.origin + '/api';
 
-</body>
-</html>
+  async function apiPost(url, data) {
+    try {
+      const res = await fetch(API_BASE + url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      return await res.json();
+    } catch (e) { return { error: 'Network error' }; }
+  }
+
+  async function subscribeUser() {
+    var email = document.getElementById('subEmail').value;
+    if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
+    var btn = document.getElementById('subBtn');
+    btn.disabled = true; btn.textContent = 'Subscribing...';
+    var result = await apiPost('/subscribe', { email: email });
+    document.getElementById('subscribeForm').style.display = 'none';
+    document.getElementById('subThanks').style.display = 'block';
+  }
+
+  async function submitContact() {
+    var nameEl = document.getElementById('cf-name'), emailEl = document.getElementById('cf-email');
+    var name = nameEl ? nameEl.value.trim() : '';
+    var email = emailEl ? emailEl.value.trim() : '';
+    var brand = (document.getElementById('cf-brand')||{}).value || '';
+    var project_type = (document.getElementById('cf-service')||{}).value || '';
+    var list_size = (document.getElementById('cf-list')||{}).value || '';
+    var budget = (document.getElementById('cf-budget')||{}).value || '';
+    var message = (document.getElementById('cf-message')||{}).value || '';
+
+    if (!name || !email || !message) { alert('Please fill in your name, email, and message.'); return; }
+
+    var btn = document.getElementById('contactSubmit');
+    if (!btn) return;
+    btn.disabled = true; btn.textContent = 'Sending...';
+
+    var result = await apiPost('/submit-contact', { name, email, brand, project_type, list_size, budget, message });
+
+    if (result.error) { alert(result.error); btn.disabled = false; btn.textContent = 'Send Message'; return; }
+
+    btn.textContent = 'Sent!';
+    var successEl = document.getElementById('formSuccess');
+    if (successEl) successEl.classList.add('is-visible');
+    setTimeout(function() { btn.disabled = false; btn.textContent = 'Send Message'; }, 3000);
+  }
